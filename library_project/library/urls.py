@@ -1,10 +1,9 @@
-# library/urls.py
+# api/urls.py
 
 from django.urls import path
-from .views import create_book, checkout_book, CustomAuthToken
+from .views import BookListCreateView, BookDetailView
 
 urlpatterns = [
-    path('books/', create_book, name='create-book'),
-    path('books/<int:pk>/checkout/', checkout_book, name='checkout-book'),
-    path('api-token-auth/', CustomAuthToken.as_view(), name='api_token_auth'),
+    path('books/', BookListCreateView.as_view(), name='book-list-create'),  # For listing and creating books
+    path('books/<int:pk>/', BookDetailView.as_view(), name='book-detail'),  # For retrieving, updating, and deleting a specific book
 ]

@@ -1,38 +1,51 @@
-# library/views.py
+# api/views.py
 
 from rest_framework import status
-from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.authtoken.models import Token
-from django.contrib.auth.models import User
+from rest_framework.views import APIView
 from .models import Book
 from .serializers import BookSerializer
 
-class CustomAuthToken(ObtainAuthToken):
-    def post(self, request, *args, **kwargs):
-        serializer = self.serializer_class(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data['user']
-        token, created = Token.objects.get_or_create(user=user)
-        return Response({'token': token.key})
+class BookListCreateView(APIView):
+    def get(self, request):
+        books = Book.objects.all()
+        serializer = BookSerializer(books, many=True)
+        return Response(serializer.data)
 
-@api_view(['POST'])
-def create_book(request):
-    serializer = BookSerializer(data=request.data)
-    if serializer.is_valid():
-        book = serializer.save()
-        return Response(BookSerializer(book).data, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def post(self, request):
+        serializer = BookSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['POST'])
-def checkout_book(request, pk):
-    try:
-        book = Book.objects.get(pk=pk)
-        if book.available:
-            book.available = False
-            book.save()
-            return Response({'status': 'book checked out'}, status=status.HTTP_200_OK)
-        return Response({'status': 'book not available'}, status=status.HTTP_400_BAD_REQUEST)
-    except Book.DoesNotExist:
-        return Response({'error': 'Book not found'}, status=status.HTTP_404_NOT_FOUND)
+class BookDetailView(APIView):
+    def get_object(self, pk):
+        try:
+            return Book.objects.get(pk=pk)
+        except Book.DoesNotExist:
+            return None
+
+    def get(self, request, pk):
+        book = self.get_object(pk)
+        if book is None:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        serializer = BookSerializer(book)
+        return Response(serializer.data)
+
+    def put(self, request, pk):
+        book = self.get_object(pk)
+        if book is None:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        serializer = BookSerializer(book, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        book = self.get_object(pk)
+        if book is None:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        book.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

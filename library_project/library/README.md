@@ -13,3 +13,4 @@ To set up authentication in your Django project, follow these steps:
 
    ```bash
    pip install djangorestframework djangorestframework-authtoken
+   
