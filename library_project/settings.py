@@ -144,7 +144,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),  # This is correct (list)
 ]
 
-STATICFILES_STORAGE = 'Whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 STORAGES = {
     "default":{
         "BACKEND": "django.core.files.storage.FileSystemStorage",
