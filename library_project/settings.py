@@ -144,14 +144,9 @@ STATICFILES_DIRS = [
 ]
  # For compression and caching
 
-STATICFILES_STORAGES = {
-    "default":{
-        "backend": "django.core.files.storage.FileSystemStorage",
-    },
-    "staticfiles":{
-        "backend":"whitenoise.storage.CompressedStaticFileStorage",
-    },
-}
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
