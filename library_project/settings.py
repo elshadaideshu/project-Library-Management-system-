@@ -98,7 +98,6 @@ STORAGES ={
 } 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-=======
 """
 Django settings for library_project project.
 
