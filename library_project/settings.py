@@ -85,7 +85,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'library_project.wsgi.application'
-ALLOWED_HOSTS = [os.environ.get('HEROKU library', 'library.herokuapp.com')]
 
 
 # Database
@@ -144,9 +143,14 @@ STATICFILES_DIRS = [
 ]
  # For compression and caching
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-
-
+STORAGES = {
+    "default":{
+        "backend": "django.core.files.storage.FileSystemStorage",
+    },
+   "staticfiles": {
+    "backend": "whitenoise.storage.CompressedStaticFilesStorage",  # Corrected case
+   },
+}
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
