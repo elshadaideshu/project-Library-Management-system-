@@ -143,7 +143,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),  # This is correct (list)
 ]
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  # For compression and caching
+STATICFILES_STORAGE = 'Whitenoise.storage.CompressedManifestStaticFilesStorage'  # For compression and caching
 
 STATICFILES_STORAGES = {
     "default":{
