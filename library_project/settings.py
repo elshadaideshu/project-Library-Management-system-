@@ -150,7 +150,7 @@ STATICFILES_DIRS = [
 DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 
 # Static files storage
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFileStorage'
+STATICFILES_STORAGE = 'Whitenoise.storage.CompressedStaticFileStorage'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
