@@ -57,7 +57,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'Whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -141,15 +141,17 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),  # This is correct (list)
-]  # For compression and caching
+]
+ # For compression and caching
 
-# settings.py
-
-# Default file storage
-DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
-
-# Static files storage
-STATICFILES_STORAGE = 'Whitenoise.storage.CompressedStaticFileStorage'
+STATICFILES_STORAGES = {
+    "default":{
+        "backend": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles":{
+        "backend":"whitenoise.storage.CompressedStaticFileStorage",
+    },
+}
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
