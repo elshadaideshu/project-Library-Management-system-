@@ -147,10 +147,10 @@ STATICFILES_STORAGE = 'Whitenoise.storage.CompressedManifestStaticFilesStorage' 
 
 STATICFILES_STORAGES = {
     "default":{
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "backend": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles":{
-        "BACKEND":"Whitenoise.storage.CompressedStaticFileStorage",
+        "backend":"Whitenoise.storage.CompressedStaticFileStorage",
     },
 }
 # Default primary key field type
