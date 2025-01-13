@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Django settings for library_project project.
 
 from pathlib import Path
@@ -244,4 +243,3 @@ django_heroku.settings(locals())
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
->>>>>>> a0df75f (initial)
