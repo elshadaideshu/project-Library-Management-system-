@@ -4,6 +4,7 @@ from pathlib import Path
 import django_heroku
 import dj_database_url
 import os
+from whitenoise import WhiteNoise
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -90,6 +91,6 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-STATICFILES_STORAGE = whitenoise.storage.CompressedStaticFileStorage
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFileStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
