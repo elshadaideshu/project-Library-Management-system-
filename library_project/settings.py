@@ -89,6 +89,15 @@ USE_TZ = True
 
 STATIC_ROOT = BASE_DIR/'staticfiles'
 STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'staticfiles'  # This refers to the 'staticfiles' storage defined above
 
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
