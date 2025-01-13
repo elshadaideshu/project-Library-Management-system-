@@ -6,7 +6,7 @@ import dj_database_url
 import os
 from whitenoise import WhiteNoise
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-0y08)a#1mlzn8^prp%e+k2t0-qiqg0qqxr98!9h(to^kivc9)@'
 DEBUG = True
@@ -48,7 +48,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'library_project.urls'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'static'),  # Ensure this directory exists
 ]
 
 TEMPLATES = [
@@ -70,11 +70,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'library_project.wsgi.application'
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    'default': dj_database_url.config(
+        default= os.environ['DATABASE_URL'],
+        conn_max_age=600
+    )
     }
-}
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
@@ -88,7 +89,7 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR/'staticfiles'
 STATIC_URL = '/static/'
 
 STORAGES ={
