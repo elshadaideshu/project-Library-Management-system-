@@ -67,6 +67,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'library_project.urls'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),  # This is correct (list)
+]
 
 TEMPLATES = [
     {
@@ -138,12 +141,10 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),  # This is correct (list)
-]
+
  # For compression and caching
 
-STORAGES = {
+STATICFILES_STORAGES = {
     "default":{
         "backend": "django.core.files.storage.FileSystemStorage",
     },
