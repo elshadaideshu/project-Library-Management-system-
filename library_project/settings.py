@@ -1,5 +1,3 @@
-# Django settings for library_project project.
-
 from pathlib import Path
 import django_heroku
 import dj_database_url
@@ -23,7 +21,7 @@ REST_FRAMEWORK = {
 
 INSTALLED_APPS = [
     'rest_framework',
-    'rest_framework.authtoken', 
+    'rest_framework.authtoken',
     'library',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -45,8 +43,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'library_project.urls'
 
+# Ensure this directory exists
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),  # Ensure this directory exists
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 TEMPLATES = [
@@ -69,11 +68,10 @@ WSGI_APPLICATION = 'library_project.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default= os.environ['DATABASE_URL'],
+        default=os.environ['DATABASE_URL'],
         conn_max_age=600
     )
-    }
-
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
@@ -87,10 +85,10 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-STATIC_ROOT = BASE_DIR/'staticfiles'
 STATIC_URL = '/static/'
-STATICFILES_STORAGE = 'staticfiles'  # This refers to the 'staticfiles' storage defined above
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+# This should be defined correctly
 STORAGES = {
     "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
