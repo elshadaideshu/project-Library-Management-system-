@@ -24,7 +24,7 @@ def main():
 
 
 if __name__ == '__main__':
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'your_project_name.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'library_project.settings')
     try:
         execute_from_command_line(sys.argv)
     except Exception as exc:
