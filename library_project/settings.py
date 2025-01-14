@@ -8,8 +8,8 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-0y08)a#1mlzn8^prp%e+k2t0-qiqg0qqxr98!9h(to^kivc9)@'
-DEBUG = False
-ALLOWED_HOSTS = []
+DEBUG = True
+ALLOWED_HOSTS = [https://project-library-management-system-1.onrender.com/]
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
@@ -68,11 +68,11 @@ TEMPLATES = [
 WSGI_APPLICATION = 'library_project.wsgi.application'
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default= os.environ['DATABASE_URL'],
-        conn_max_age=600
-    )
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
+}
 
 
 AUTH_PASSWORD_VALIDATORS = [
