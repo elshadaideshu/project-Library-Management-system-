@@ -23,6 +23,7 @@ REST_FRAMEWORK = {
 
 INSTALLED_APPS = [
     'rest_framework',
+    'corsheaders',
     'rest_framework.authtoken', 
     'library',
     'django.contrib.admin',
@@ -35,6 +36,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -48,7 +50,14 @@ ROOT_URLCONF = 'library_project.urls'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),  # Ensure this directory exists
 ]
-
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",  # Development URL
+      # Replace with your production URL
+]
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:5173",  # Development URL
+  # Replace with your production URL
+]
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
