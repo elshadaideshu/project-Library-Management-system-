@@ -24,7 +24,7 @@ MIDDLEWARE = [
   #      "BACKEND": "django.core.files.storage.FileSystemStorage",
    # },
     
-}
+
 DATABASES = {
     'default': dj_database_url.config(
         default = os.environ['DATABASE_URL'],
