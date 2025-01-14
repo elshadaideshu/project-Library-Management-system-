@@ -19,7 +19,14 @@ MIDDLEWARE = [
 #CORS_ALLOWED_ORIGINS = [
 # 'http://localhost:5173'
 # ]
-
+#STORAGES = {
+ #   "default": {
+  #      "BACKEND": "django.core.files.storage.FileSystemStorage",
+   # },
+    #"staticfiles": {
+     #   "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    #},
+#}
 DATABASES = {
     'default': dj_database_url.config(
         default = os.environ['DARABASE_URL'],
