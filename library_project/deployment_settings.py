@@ -17,7 +17,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 CORS_ALLOWED_ORIGINS = [
- https://project-library-management-system-1.onrender.com
+ "https://project-library-management-system-1.onrender.com"
  ]
 #STORAGES = {
  #   "default":{
