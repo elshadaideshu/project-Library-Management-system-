@@ -1,10 +1,15 @@
 # api/views.py
-
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Book
 from .serializers import BookSerializer
+from django.http import HttpResponse
+from django.views import View
+
+class HomeView(View):
+    def get(self, request):
+        return HttpResponse("Welcome to the Library Management System")
 
 class BookListCreateView(APIView):
     def get(self, request):
@@ -48,4 +53,3 @@ class BookDetailView(APIView):
         if book is None:
             return Response(status=status.HTTP_404_NOT_FOUND)
         book.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
