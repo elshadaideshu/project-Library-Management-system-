@@ -7,9 +7,9 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-0y08)a#1mlzn8^prp%e+k2t0-qiqg0qqxr98!9h(to^kivc9)@'
+SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = True
-ALLOWED_HOSTS = ['project-library-management-system-1.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
@@ -67,14 +67,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'library_project.wsgi.application'
 
+
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))  # Use environment variable for production
 }
-
-
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -90,6 +87,6 @@ USE_TZ = True
 STATIC_ROOT = BASE_DIR/'staticfiles'
 STATIC_URL = '/static/'
 #STATICFILES_STORAGE = 'staticfiles'  # This refers to the 'staticfiles' storage defined above
-
+SECURE_SSL_REDIRECT = False
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

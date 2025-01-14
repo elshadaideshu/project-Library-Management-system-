@@ -16,18 +16,18 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-#CORS_ALLOWED_ORIGINS = [
-# 'http://localhost:5173'
-# ]
+CORS_ALLOWED_ORIGINS = [
+ https://project-library-management-system-1.onrender.com
+ ]
 #STORAGES = {
  #   "default":{
   #      "BACKEND": "django.core.files.storage.FileSystemStorage",
    # },
     
 
-#DATABASES = {
- #   'default': dj_database_url.config(
-  #      default = os.environ['DATABASE_URL'],
-   #     conn_max_age = 600
-    #)
-#}
+DATABASES = {
+    'default': dj_database_url.config(
+        default = os.environ['DATABASE_URL'],
+        conn_max_age = 600
+    )
+}
